@@ -1,0 +1,27 @@
+{
+  "name": "node-tests",
+  "version": "1.0.0",
+  "description": "rethinkdb overview",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/VivienAdnot/node-tests.git"
+  },
+  "keywords": [
+    "rethinkdb"
+  ],
+  "author": "Vivien Adnot",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/VivienAdnot/node-tests/issues"
+  },
+  "homepage": "https://github.com/VivienAdnot/node-tests#readme",
+  "dependencies": {
+    "ajv": "^6.0.0",
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2"
+  }
+}
