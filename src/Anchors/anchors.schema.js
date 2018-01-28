@@ -12,7 +12,7 @@ function getRdbData(shouldSucceed) {
 }
 
 function checkIdExists(schema, data) {
-    return getRdbData(false)
+    return getRdbData(true)
         .then((rows) => {
             return !!rows.length;
         })
