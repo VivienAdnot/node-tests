@@ -3,7 +3,6 @@ var bodyParser = require('body-parser');
 
 var bootstrap = require('./bootstrap');
 var validateAnchors = require('./Anchors/anchors.schema');
-var scraper = require('./scraper/imdb-scraper');
 
 var app = express();
 
@@ -29,13 +28,6 @@ app.get('/user/:id', function (req, res, next) {
         name: "Vivien Adnot",
         email: "vivienadnot@amplement.com"
     }});
-});
-
-app.get('/scrape/:url', function(req, res){
-    scraper.scrape("http://www.imdb.com/title/" + req.params.url);
-    //url = 'http://www.imdb.com/title/tt1229340/';
-    // Finally, we'll just send out a message to the browser reminding you that this app does not have a UI.
-    res.send('Check your console!');
 });
 
 //bootstrap.run(app);
