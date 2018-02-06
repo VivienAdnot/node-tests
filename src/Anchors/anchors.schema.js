@@ -22,17 +22,12 @@ const ANCHOR_SCHEMA = {
     $async: true,
     type: 'object',
     properties: {
-        _feed: { type: 'string', pattern: ajvUtils.UUID_PATTERN },
-        _target: { type: 'string', pattern: ajvUtils.UUID_PATTERN },
-        _user: { type: 'string', pattern: ajvUtils.UUID_PATTERN },
-        id: {
-            type: 'string',
-            pattern: ajvUtils.UUID_PATTERN,
-            idExists: { table: 'anchors'}
-        },
-        status: { type: 'integer', enum: constants.SUBSCRIPTION_STATUSES },
+        _feed: { type: 'string', pattern: ajvUtils.UUID_PATTERN, idExists: { table: 'feeds'} },
+        _user: { type: 'string', pattern: ajvUtils.UUID_PATTERN, idExists: { table: 'users'} },
+        id: { type: 'string', pattern: ajvUtils.UUID_PATTERN },
+        status: { type: 'integer', enum: constants.SUBSCRIPTION_STATUSES }
     },
-    required: ['_feed', '_target', '_user']
+    required: ['_feed', '_user', 'status']
 };
 
 var ajv = setupAsync(new Ajv(ajvUtils.AJV_BASIC_SETTINGS));
