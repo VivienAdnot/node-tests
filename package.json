@@ -4,6 +4,7 @@
   "description": "rethinkdb overview",
   "main": "index.js",
   "scripts": {
+    "start": "pm2 start src/server.js --watch",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -22,6 +23,8 @@
   "dependencies": {
     "ajv": "^6.0.0",
     "ajv-async": "^1.0.1",
+    "async": "^2.6.0",
+    "bluebird": "^3.5.1",
     "body-parser": "^1.18.2",
     "boom": "^7.1.1",
     "express": "^4.16.2"

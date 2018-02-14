@@ -1,14 +1,14 @@
 var anchorRoutes = require('./Anchors/anchors.routes');
+var mailIssueRoutes = require('./Mail-issue/mail-issue.routes');
 
 function run(app) {
-    mountRoutes(app);
+    mountRoutes(app, [
+        anchorRoutes,
+        mailIssueRoutes
+    ]);
 }
 
-function mountRoutes(app) {
-    reduceAPIRoutes(app, [anchorRoutes]);
-}
-
-function reduceAPIRoutes(app, routes) {
+function mountRoutes(app, routes) {
     for (let routesByConcept of routes) {
         for (let routeDefinition of routesByConcept) {
             const method = routeDefinition.method === 'DEL'

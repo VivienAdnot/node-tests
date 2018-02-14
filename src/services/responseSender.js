@@ -10,11 +10,9 @@ exports.responseSender = (req, res, next) => {
 
 exports.errorResponseSender = (err, req, res, next) => {
 
-    console.log('errorResponseSender start');
+    console.log('errorResponseSender reached');
 
     if (err.isBoom) {
-
-        console.log('errorResponseSender isBoom yes');
 
         res.status(err.output.statusCode).send({
             message: err.output.payload.message
@@ -23,15 +21,11 @@ exports.errorResponseSender = (err, req, res, next) => {
 
     } else if (err instanceof Ajv.ValidationError) {
 
-        console.log('errorResponseSender instanceof Ajv.ValidationError yes');
-
         res.status(HTTP_CODE_INTERNAL_SERVER_ERROR).send({
             ajvmessage: err.errors
         });
 
     } else {
-
-        console.log('errorResponseSender else');
 
         res.status(HTTP_CODE_INTERNAL_SERVER_ERROR).send({
             message: err.message
