@@ -1,10 +1,8 @@
 var anchorRoutes = require('./Anchors/anchors.routes');
-var mailIssueRoutes = require('./Mail-issue/mail-issue.routes');
 
 function run(app) {
     mountRoutes(app, [
-        anchorRoutes,
-        mailIssueRoutes
+        anchorRoutes
     ]);
 }
 
