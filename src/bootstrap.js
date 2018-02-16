@@ -1,8 +1,10 @@
 var anchorRoutes = require('./Anchors/anchors.routes');
+var importContactRoutes = require('./importContacts/importContacts.routes');
 
 function run(app) {
     mountRoutes(app, [
-        anchorRoutes
+        anchorRoutes,
+        importContactRoutes
     ]);
 }
 
