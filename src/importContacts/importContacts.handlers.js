@@ -25,20 +25,41 @@ exports.writeFile = (req, res, next) => {
 
 },
 
-exports.testAsync = (req, res, next) => {
+exports.testAsyncWaterfall = (req, res, next) => {
 
     async.waterfall([
         function (callback) {
+
             console.log('First Step --> ');
-            callback(null, '1', '2');
+
+            setTimeout(() => {
+
+                callback(null, '1', '2');
+
+            }, 500);
+
         },
         function (arg1, arg2, callback) {
+
             console.log('Second Step --> ' + arg1 + ' ' + arg2);
-            callback(null, '3');
+
+            setTimeout(() => {
+
+                callback(null, '3');
+
+            }, 1500);
+
         },
         function (arg1, callback) {
+
             console.log('Third Step --> ' + arg1);
-            callback(null, 'final result');
+
+            setTimeout(() => {
+
+                callback(null, 'final result');
+
+            }, 500);
+
         }
     ], function (err, result) {
         console.log('Main Callback --> ' + result);
@@ -47,4 +68,32 @@ exports.testAsync = (req, res, next) => {
     });
 
     console.log('Program End');
+}
+
+const asyncDummy = (val) => {
+
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            resolve(val);
+        }, val * 100);
+    })
+}
+
+exports.testAsyncEachLimit = (req, res, next) => {
+
+    let batch = [25, 6, 35, 9, 15, 5];
+
+    async.eachLimit(batch, 3, (val, callback) => {
+
+        console.log(`${val} started`);
+
+        asyncDummy(val)
+            .then((result) => console.log(`${val} end`))
+            .finally(callback);
+
+    }, () => {
+        console.log('final callback called');
+        res.data = "done";
+        next();
+    })
 }

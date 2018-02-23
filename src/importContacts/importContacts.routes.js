@@ -10,9 +10,16 @@ const routes = [{
     ]
 }, {
     method: 'POST',
-    path: '/testAsync',
+    path: '/testAsyncWaterfall',
     handlers: [
-        handlers.testAsync,
+        handlers.testAsyncWaterfall,
+        responseSender.responseSender
+    ]
+}, {
+    method: 'POST',
+    path: '/testAsyncEachLimit',
+    handlers: [
+        handlers.testAsyncEachLimit,
         responseSender.responseSender
     ]
 }];
