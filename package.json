@@ -4,7 +4,7 @@
   "description": "rethinkdb overview",
   "main": "index.js",
   "scripts": {
-    "start": "pm2 start src/server.js --watch",
+    "start": "nodemon start src/server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
