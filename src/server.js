@@ -1,8 +1,6 @@
 var express = require('express');
 var bodyParser = require('body-parser');
-
 var bootstrap = require('./bootstrap');
-var validateAnchors = require('./Anchors/anchors.schema');
 var responseSender = require('./services/responseSender');
 
 var app = express();

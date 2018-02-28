@@ -1,11 +1,11 @@
-var handlers = require('./anchors.handlers');
+var handlers = require('./index.handlers');
 var responseSender = require('../services/responseSender');
 
 const routes = [{
     method: 'POST',
-    path: '/anchors',
+    path: '/writeFile',
     handlers: [
-        handlers.postAnchors,
+        handlers.writeFile,
         responseSender.responseSender
     ]
 }];

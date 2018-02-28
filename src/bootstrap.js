@@ -1,10 +1,14 @@
-var anchorRoutes = require('./Anchors/anchors.routes');
-var importContactRoutes = require('./importContacts/importContacts.routes');
+var ajvSchemaRoutes = require('./AjvSchema/index.routes');
+var asyncLibRoutes = require('./AsyncLib/index.routes');
+var fileSystemRoutes = require('./FileSystem/index.routes');
+var promisesRoutes = require('./Promises/index.routes');
 
 function run(app) {
     mountRoutes(app, [
-        anchorRoutes,
-        importContactRoutes
+        ajvSchemaRoutes,
+        asyncLibRoutes,
+        fileSystemRoutes,
+        promisesRoutes
     ]);
 }
 

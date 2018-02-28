@@ -1,6 +1,6 @@
 var Ajv = require('ajv');
 var setupAsync = require('ajv-async');
-var constants = require('./anchors.const');
+var constants = require('./index.const');
 var ajvUtils = require('../services/utils/ajv/ajv.const');
 
 function getRdbData(shouldSucceed) {

@@ -1,29 +1,5 @@
 var async = require('async');
-//var invitationHandlers = require('./invitationHandler');
 var Promise = require('bluebird');
-var fs = require('fs');
-
-exports.writeFile = (req, res, next) => {
-
-    const { total } = req.body;
-    if (!total) {
-
-        next(new Error('body must contain "total"'));
-        return;
-
-    }
-
-    for(let i = 0; i < total; i++) {
-
-        fs.appendFile(`/Users/vivienadnot/Documents/mailing-list/mailing-list-${total}.txt`, `elie+${total}-${i}@jetable.org\n`, (err) => {
-            if (err) throw err;
-        });
-
-    }
-
-    next();
-
-},
 
 exports.testAsyncWaterfall = (req, res, next) => {
 
@@ -70,7 +46,7 @@ exports.testAsyncWaterfall = (req, res, next) => {
     console.log('Program End');
 }
 
-const asyncDummy = (val) => {
+const asyncDummyPromise = (val) => {
 
     return new Promise((resolve) => {
         setTimeout(() => {
@@ -79,7 +55,7 @@ const asyncDummy = (val) => {
     })
 }
 
-exports.testAsyncEachLimit = (req, res, next) => {
+exports.testAsyncEachLimitWithPromise = (req, res, next) => {
 
     let batch = [25, 6, 35, 9, 15, 5];
 
@@ -87,7 +63,7 @@ exports.testAsyncEachLimit = (req, res, next) => {
 
         console.log(`${val} started`);
 
-        asyncDummy(val)
+        asyncDummyPromise(val)
             .then((result) => console.log(`${val} end`))
             .finally(callback);
 

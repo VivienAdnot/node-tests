@@ -1,14 +1,7 @@
-var handlers = require('./importContacts.handlers');
+var handlers = require('./index.handlers');
 var responseSender = require('../services/responseSender');
 
 const routes = [{
-    method: 'POST',
-    path: '/writeFile',
-    handlers: [
-        handlers.writeFile,
-        responseSender.responseSender
-    ]
-}, {
     method: 'POST',
     path: '/testAsyncWaterfall',
     handlers: [
@@ -17,9 +10,9 @@ const routes = [{
     ]
 }, {
     method: 'POST',
-    path: '/testAsyncEachLimit',
+    path: '/testAsyncEachLimitWithPromise',
     handlers: [
-        handlers.testAsyncEachLimit,
+        handlers.testAsyncEachLimitWithPromise,
         responseSender.responseSender
     ]
 }];

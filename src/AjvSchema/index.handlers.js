@@ -1,4 +1,4 @@
-var schema = require('./anchors.schema');
+var schema = require('./index.schema');
 
 exports.postAnchors = (req, res, next) => {
 
