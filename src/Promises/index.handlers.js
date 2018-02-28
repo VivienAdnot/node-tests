@@ -1,10 +1,11 @@
-var Promise = require('bluebird');
-var promisesUtils = require('../services/utils/promises/index');
+import Promise from 'bluebird';
+
+import { delayedResolve } from '../services/utils/promises/index';
 
 const generatorPromiseAll = () => {
     return Promise.all([
-        promisesUtils.delayedResolve(true, 1200),
-        promisesUtils.delayedResolve(true, 800)
+        delayedResolve(true, 1200),
+        delayedResolve(true, 800)
     ]);
 };
 
@@ -23,11 +24,28 @@ const intermediateFunc = () => {
 
 exports.testPromiseAll = (req, res, next) => {
 
-    intermediateFunc()
+    return Promise.resolve()
         .then(result => {
 
             res.data = "final then called";
             next();
+
+        })
+        .catch(next);
+
+};
+
+export const postUserRelation = (req, res, next) => {
+
+    console.log('start handler');
+
+    return Promise.resolve('test')
+        .then((result) => {
+
+            console.log('handler then start', result);
+            next();
+
+            return Promise.resolve();
 
         })
         .catch(next);

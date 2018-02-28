@@ -8,6 +8,13 @@ const routes = [{
         handlers.testPromiseAll,
         responseSender.responseSender
     ]
+}, {
+    method: 'POST',
+    path: '/postUserRelation',
+    handlers: [
+        handlers.postUserRelation,
+        responseSender.responseSender
+    ]
 }];
 
 module.exports = routes;
