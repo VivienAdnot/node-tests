@@ -1,5 +1,6 @@
 var async = require('async');
 var Promise = require('bluebird');
+var promisesUtils = require('../services/utils/promises/index');
 
 exports.testAsyncWaterfall = (req, res, next) => {
 
@@ -46,15 +47,6 @@ exports.testAsyncWaterfall = (req, res, next) => {
     console.log('Program End');
 }
 
-const asyncDummyPromise = (val) => {
-
-    return new Promise((resolve) => {
-        setTimeout(() => {
-            resolve(val);
-        }, val * 100);
-    })
-}
-
 exports.testAsyncEachLimitWithPromise = (req, res, next) => {
 
     let batch = [25, 6, 35, 9, 15, 5];
@@ -63,7 +55,7 @@ exports.testAsyncEachLimitWithPromise = (req, res, next) => {
 
         console.log(`${val} started`);
 
-        asyncDummyPromise(val)
+        promisesUtils.delayedResolve(val, val * 100)
             .then((result) => console.log(`${val} end`))
             .finally(callback);
 

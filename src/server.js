@@ -17,3 +17,4 @@ bootstrap.run(app);
 app.use(responseSender.errorResponseSender);
 
 app.listen(8088);
+console.log("server listening on 8088");
