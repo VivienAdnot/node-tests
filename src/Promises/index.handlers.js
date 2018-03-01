@@ -1,37 +1,22 @@
 import Promise from 'bluebird';
-
 import { delayedResolve } from '../services/utils/promises/index';
 
-const generatorPromiseAll = () => {
+const intermediateFunc = () => {
+
+    if (true === false) {
+
+        return Promise.resolve();
+
+    }
+
     return Promise.all([
         delayedResolve(true, 1200),
         delayedResolve(true, 800)
-    ]);
-};
+    ]).then(([result1, result2]) =>
 
-const intermediateFunc = () => {
-    if (true == false) {
-        return Promise.resolve();
-    }
-
-    return generatorPromiseAll()
-        .then(([result1, result2]) =>  (result1 && result2)
-                ? Promise.resolve()
-                : Promise.reject(new Error("result 1 or result 2 is false"))
-
-        );
-}
-
-exports.testPromiseAll = (req, res, next) => {
-
-    return Promise.resolve()
-        .then(result => {
-
-            res.data = "final then called";
-            next();
-
-        })
-        .catch(next);
+        ((result1 && result2)
+            ? Promise.resolve()
+            : Promise.reject(new Error('result 1 or result 2 is false'))));
 
 };
 

@@ -3,13 +3,6 @@ var responseSender = require('../services/responseSender');
 
 const routes = [{
     method: 'POST',
-    path: '/testPromiseAll',
-    handlers: [
-        handlers.testPromiseAll,
-        responseSender.responseSender
-    ]
-}, {
-    method: 'POST',
     path: '/postUserRelation',
     handlers: [
         handlers.postUserRelation,
