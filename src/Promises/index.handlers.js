@@ -57,20 +57,15 @@ export const waterfallSpread = (req, res, next) => {
         .then(data =>
 
             multiply(data.test, 2)
-                .then((newValue) => {
-
-                    const result = {
-                        newValue,
-                        ...data
-                    };
-
-                    return result;
-
-                }))
-        .then((val) => {
+                .then(newValue => ({
+                    newValue,
+                    ...data
+                })))
+        .then(({ newValue, test }) => {
 
             res.data = {
-                data: val
+                res1: newValue,
+                res2: test
             };
 
             next();
