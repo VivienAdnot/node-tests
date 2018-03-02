@@ -1,13 +1,27 @@
-var Promise = require('bluebird');
+import Promise from 'bluebird';
 
-exports.delayedResolve = (val, timeout = 300) => {
+exports.delayedResolve = (val, timeout = 300, verbose = false) => {
 
-    console.log("delayedResolve start");
+    if (verbose) {
+
+        console.log('delayedResolve start');
+
+    }
 
     return new Promise((resolve) => {
+
         setTimeout(() => {
-            console.log("delayedResolve resolve", val);
+
+            if (verbose) {
+
+                console.log('delayedResolve resolve', val);
+
+            }
+
             resolve(val);
+
         }, timeout);
-    })
+
+    });
+
 };
