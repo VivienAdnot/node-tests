@@ -1,75 +1,39 @@
+import Boom from 'boom';
 import Promise from 'bluebird';
 import { delayedResolve } from '../services/utils/promises/index';
 
-const intermediateFunc = () => {
+const multiply = (nb, multiplier) => Promise.resolve(nb * multiplier);
 
-    if (true === false) {
+const divide = (nb, divider) => Promise.resolve(nb / divider);
 
-        return Promise.resolve();
+// async.waterfall equivalent
+exports.chain = (req, res, next) => {
 
-    }
-
-    return Promise.all([
-        delayedResolve(true, 1200),
-        delayedResolve(true, 800)
-    ]).then(([result1, result2]) =>
-
-        ((result1 && result2)
-            ? Promise.resolve()
-            : Promise.reject(new Error('result 1 or result 2 is false'))));
-
-};
-
-export const promiseAllShowcase = (req, res, next) => {
-
-    intermediateFunc()
-        .then(() => next())
-        .catch(next);
-
-};
-
-export const postUserRelation = (req, res, next) => {
-
-    console.log('start handler');
-
-    return Promise.resolve('test')
-        .then((result) => {
-
-            console.log('handler then start', result);
-            next();
-
-            return Promise.resolve();
-
-        })
-        .catch(next);
-
-};
-
-const multiply = (nb, multiplier) => delayedResolve(nb * multiplier);
-
-export const waterfallSpread = (req, res, next) => {
-
-    const value = {
-        test: 1
-    };
+    const value = { test: 1 };
 
     delayedResolve(value)
-        .then(data =>
-
-            multiply(data.test, 2)
-                .then(newValue => ({
-                    newValue,
-                    ...data
-                })))
-        .then(({ newValue, test }) => {
+        .then(data => multiply(data.test, 3))
+        .then(data => divide(data, 2))
+        .then((result) => {
 
             res.data = {
-                res1: newValue,
-                res2: test
+                val: result
             };
-
             next();
 
         });
 
 };
+
+exports.promiseAllExample = (req, res, next) =>
+
+    Promise.all([
+        delayedResolve(true, 800),
+        delayedResolve(true, 500)
+    ])
+        .then(([result1, result2]) =>
+
+            ((result1 && result2)
+                ? next()
+                : next(Boom.internal('result 1 or result 2 is false'))))
+        .catch(next);

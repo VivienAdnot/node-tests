@@ -1,26 +1,19 @@
-var handlers = require('./index.handlers');
-var responseSender = require('../services/responseSender');
+import { chain, promiseAllExample } from './index.handlers';
+import { responseSender } from '../services/responseSender';
 
 const routes = [{
     method: 'POST',
-    path: '/promiseAllShowcase',
+    path: '/chain',
     handlers: [
-        handlers.promiseAllShowcase,
-        responseSender.responseSender
+        chain,
+        responseSender
     ]
 }, {
     method: 'POST',
-    path: '/postUserRelation',
+    path: '/promiseAll',
     handlers: [
-        handlers.postUserRelation,
-        responseSender.responseSender
-    ]
-}, {
-    method: 'POST',
-    path: '/waterfallSpread',
-    handlers: [
-        handlers.waterfallSpread,
-        responseSender.responseSender
+        promiseAllExample,
+        responseSender
     ]
 }];
 
