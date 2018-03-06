@@ -10,8 +10,6 @@ exports.responseSender = (req, res, next) => {
 
 exports.errorResponseSender = (err, req, res, next) => {
 
-    console.log('errorResponseSender reached');
-
     if (err.isBoom) {
 
         res.status(err.output.statusCode).send({
