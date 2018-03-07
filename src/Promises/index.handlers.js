@@ -52,3 +52,44 @@ export const promiseMapExample = (req, res, next) =>
 
         })
         .catch(next);
+
+export const returnOrReject = (req, res, next) => {
+
+    const { data } = req.body;
+
+    Promise.resolve(data)
+        .then(result => result || Promise.reject(Boom.forbidden()))
+        .then(() => {
+
+            res.data = {
+                data: 'OK'
+            };
+            next();
+            return Promise.resolve();
+
+        })
+        .catch(next);
+
+};
+
+export const ternary = (req, res, next) => {
+
+    const { data } = req.body;
+
+    Promise.resolve(data)
+        .then(result => ((result % 2 === 0)
+            ? result
+            : Promise.reject(Boom.forbidden())
+        ))
+        .then(() => {
+
+            res.data = {
+                data: 'OK'
+            };
+            next();
+            return Promise.resolve();
+
+        })
+        .catch(next);
+
+};
