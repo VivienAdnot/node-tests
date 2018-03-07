@@ -1,12 +1,13 @@
 import Boom from 'boom';
 import Promise from 'bluebird';
+import { logAndResolve } from '../services/utils/promises/index';
 
 const multiply = (nb, multiplier) => Promise.resolve(nb * multiplier);
 
 const divide = (nb, divider) => Promise.resolve(nb / divider);
 
 // async.waterfall equivalent
-const chain = (req, res, next) => {
+export const chain = (req, res, next) => {
 
     const value = { test: 1 };
 
@@ -24,7 +25,7 @@ const chain = (req, res, next) => {
 
 };
 
-const promiseAllExample = (req, res, next) =>
+export const promiseAllExample = (req, res, next) =>
 
     Promise.all([
         Promise.delay(500).then(() => Promise.resolve(true)),
@@ -37,4 +38,17 @@ const promiseAllExample = (req, res, next) =>
                 : next(Boom.internal('result 1 or result 2 is false'))))
         .catch(next);
 
-module.exports = { chain, promiseAllExample };
+export const promiseMapExample = (req, res, next) =>
+
+    Promise.map([500, 950, 800, 300], (duration, index) =>
+        Promise.delay(duration).then(() => logAndResolve(index))
+    )
+        .then((results) => {
+
+            res.data = {
+                data: results
+            };
+            next();
+
+        })
+        .catch(next);

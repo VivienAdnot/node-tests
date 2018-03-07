@@ -25,3 +25,10 @@ exports.delayedResolve = (val, timeout = 300, verbose = false) => {
     });
 
 };
+
+exports.logAndResolve = (val) => {
+
+    console.log(val);
+    return Promise.resolve(val);
+
+};

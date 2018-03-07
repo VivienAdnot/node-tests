@@ -1,4 +1,4 @@
-import { chain, promiseAllExample } from './index.handlers';
+import { chain, promiseAllExample, promiseMapExample } from './index.handlers';
 import { responseSender } from '../services/responseSender';
 
 const routes = [{
@@ -13,6 +13,13 @@ const routes = [{
     path: '/promiseAll',
     handlers: [
         promiseAllExample,
+        responseSender
+    ]
+}, {
+    method: 'POST',
+    path: '/promiseMap',
+    handlers: [
+        promiseMapExample,
         responseSender
     ]
 }];
