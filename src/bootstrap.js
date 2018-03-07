@@ -1,22 +1,13 @@
-var ajvSchemaRoutes = require('./AjvSchema/index.routes');
-var asyncLibRoutes = require('./AsyncLib/index.routes');
-var fileSystemRoutes = require('./FileSystem/index.routes');
-var promisesRoutes = require('./Promises/index.routes');
+import ajvSchemaRoutes from './AjvSchema/index.routes';
+import asyncLibRoutes from './AsyncLib/index.routes';
+import fileSystemRoutes from './FileSystem/index.routes';
+import promisesRoutes from './Promises/index.routes';
 
-function run(app) {
-    mountRoutes(app, [
-        ajvSchemaRoutes,
-        asyncLibRoutes,
-        fileSystemRoutes,
-        promisesRoutes
-    ]);
-}
+const validateRouteHandlers = (route) => {
 
-function validateRouteHandlers(route) {
+    for (let index = 0; index < route.handlers.length; index += 1) {
 
-    for(let index = 0; index < route.handlers.length; index++) {
-
-        let currentHandler = route.handlers[index];
+        const currentHandler = route.handlers[index];
         if (typeof currentHandler !== 'function') {
 
             throw new Error(`On ${route.path}, handler ${index} must be a function`);
@@ -25,9 +16,9 @@ function validateRouteHandlers(route) {
 
     }
 
-}
+};
 
-function mountRoutes(app, routesTree) {
+const mountRoutes = (app, routesTree) =>
 
     routesTree.forEach((routesContext) => {
 
@@ -41,10 +32,19 @@ function mountRoutes(app, routesTree) {
 
             app[method](route.path, ...route.handlers);
 
-        })
+        });
 
     });
 
-}
+const run = (app) => {
+
+    mountRoutes(app, [
+        ajvSchemaRoutes,
+        asyncLibRoutes,
+        fileSystemRoutes,
+        promisesRoutes
+    ]);
+
+};
 
 module.exports = { run };
