@@ -1,20 +1,18 @@
-var express = require('express');
-var bodyParser = require('body-parser');
-var bootstrap = require('./bootstrap');
-var responseSender = require('./services/responseSender');
+import express from 'express';
+import bodyParser from 'body-parser';
+import { run } from './bootstrap';
+import { errorResponseSender } from './services/responseSender';
 
-var app = express();
+const app = express();
 
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.urlencoded({ extended: false }));
 
-app.get('/', function(req, res) {
-    res.send({'serverLive' : true});
-});
+app.get('/', (req, res) => res.send({ serverLive: true }));
 
-bootstrap.run(app);
+run(app);
 
-app.use(responseSender.errorResponseSender);
+app.use(errorResponseSender);
 
 app.listen(8088);
-console.log("server listening on 8088");
+console.log('server listening on 8088');
