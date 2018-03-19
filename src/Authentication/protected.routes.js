@@ -2,7 +2,10 @@ import passport from 'passport';
 import { responseSender } from '../services/responseSender';
 import getProtected from './protected.handlers';
 
-const requireAuth = passport.authenticate('jwt', { session: false });
+const requireAuth = passport.authenticate('jwt', {
+    assignProperty: 'credentials',
+    session: false
+});
 
 const routes = [{
     method: 'GET',

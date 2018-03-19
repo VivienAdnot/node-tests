@@ -1,6 +1,9 @@
 import LocalStrategy from 'passport-local';
 import { Strategy, ExtractJwt } from 'passport-jwt';
-import { getUserById, getCredentialsByEmail } from './model';
+import {
+    getCredentialsByEmail,
+    getCredentialsById
+} from './model';
 
 const headerAuthenticateStrategy = new Strategy({
     jwtFromRequest: (req) => {
@@ -13,12 +16,12 @@ const headerAuthenticateStrategy = new Strategy({
     secretOrKey: 'VIVIEN'
 }, (payload, done) => {
 
-    getUserById(payload.id)
-        .then((user) => {
+    getCredentialsById(payload.id)
+        .then((credentials) => {
 
-            if (user) {
+            if (credentials) {
 
-                done(null, user);
+                done(null, credentials);
                 return Promise.resolve();
 
             }
@@ -45,13 +48,8 @@ const loginStrategy = new LocalStrategy({
 
             if (credentials.password === password) {
 
-                return getUserById(credentials._user)
-                    .then((user) => {
-
-                        done(null, user);
-                        return Promise.resolve();
-
-                    });
+                done(null, credentials);
+                return Promise.resolve();
 
             }
 
