@@ -1,15 +1,15 @@
 import passport from 'passport';
-import { proceedSuccessLogin } from './index.handlers';
+import { proceedSuccessLoginUser } from './index.handlers';
 import { responseSender } from '../services/responseSender';
 
 const authenticateUser = passport.authenticate('local', { session: false });
 
 const routes = [{
     method: 'POST',
-    path: '/login',
+    path: '/login-user',
     handlers: [
         authenticateUser,
-        proceedSuccessLogin,
+        proceedSuccessLoginUser,
         responseSender
     ]
 }];

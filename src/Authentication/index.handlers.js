@@ -1,5 +1,5 @@
 import jwt from 'jsonwebtoken';
-import { getUserById } from '../services/passport/model';
+import { getCredentialsByUserId } from '../services/database/model';
 
 const generateJwtToken = (payload) => {
 
@@ -8,14 +8,20 @@ const generateJwtToken = (payload) => {
 
 };
 
-exports.proceedSuccessLogin = (req, res, next) => {
+exports.proceedSuccessLoginUser = (req, res, next) => {
 
-    res.data = {
-        token: generateJwtToken({ id: req.user.id }),
-        ...req.user
-    };
-    next();
+    getCredentialsByUserId(req.user.id)
+        .then((credentials) => {
 
-    return Promise.resolve();
+            res.data = {
+                token: generateJwtToken({ id: credentials.id }),
+                ...req.user
+            };
+            next();
+
+            return Promise.resolve();
+
+
+        });
 
 };

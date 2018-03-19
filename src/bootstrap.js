@@ -1,5 +1,6 @@
 import passport from 'passport';
-import { loginStrategy, headerAuthenticateStrategy } from './services/passport/strategy';
+import { companyHeaderAuthenticateStrategy } from './services/passport/strategy-company';
+import { userLoginStrategy, userHeaderAuthenticateStrategy } from './services/passport/strategy-user';
 import ajvSchemaRoutes from './AjvSchema/index.routes';
 import asyncLibRoutes from './AsyncLib/index.routes';
 import fileSystemRoutes from './FileSystem/index.routes';
@@ -42,8 +43,9 @@ const mountRoutes = (app, routesTree) =>
 
 const run = (app) => {
 
-    passport.use(loginStrategy);
-    passport.use(headerAuthenticateStrategy);
+    passport.use(userLoginStrategy);
+    passport.use(userHeaderAuthenticateStrategy);
+    passport.use(companyHeaderAuthenticateStrategy);
 
     mountRoutes(app, [
         ajvSchemaRoutes,

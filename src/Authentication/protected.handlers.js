@@ -1,15 +1,9 @@
 exports.protectedUser = (req, res, next) => {
 
-    console.log({
-        user: req.user,
-        company: req.company,
-        credentials: req.credentials
-    });
-
     res.data = {
         data: {
             name: 'protected ressource user',
-            access: 'OK'
+            user: req.user
         }
     };
     next();
@@ -19,16 +13,10 @@ exports.protectedUser = (req, res, next) => {
 
 exports.protectedCompany = (req, res, next) => {
 
-    console.log({
-        user: req.user,
-        company: req.company,
-        credentials: req.credentials
-    });
-
     res.data = {
         data: {
             name: 'protected ressource company',
-            access: 'OK'
+            company: req.company
         }
     };
     next();

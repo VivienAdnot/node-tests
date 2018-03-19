@@ -19,3 +19,7 @@ export const getCredentialsById = _credentials =>
 export const getCompanyById = _company =>
 
     getUniqueData('companies', 'id', _company);
+
+export const getCredentialsByUserId = _user =>
+
+    getUniqueData('credentials', '_user', _user);

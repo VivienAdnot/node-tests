@@ -1,11 +1,23 @@
 import LocalStrategy from 'passport-local';
-import { Strategy, ExtractJwt } from 'passport-jwt';
+import { ExtractJwt, Strategy } from 'passport-jwt';
 import {
+    getUserById,
     getCredentialsByEmail,
     getCredentialsById
-} from './model';
+} from '../database/model';
 
-const headerAuthenticateStrategy = new Strategy({
+class UserStrategy extends Strategy {
+
+    constructor(options, verify) {
+
+        super(options, verify);
+        this.name = 'jwt-user';
+
+    }
+
+}
+
+const userHeaderAuthenticateStrategy = new UserStrategy({
     jwtFromRequest: (req) => {
 
         const extractAuthHeader = ExtractJwt.fromAuthHeaderAsBearerToken();
@@ -19,21 +31,26 @@ const headerAuthenticateStrategy = new Strategy({
     getCredentialsById(payload.id)
         .then((credentials) => {
 
-            if (credentials) {
+            if (!credentials) {
 
-                done(null, credentials);
-                return Promise.resolve();
+                return Promise.reject();
 
             }
 
-            return Promise.reject();
+            return getUserById(credentials._user)
+                .then((user) => {
+
+                    done(null, user);
+                    return Promise.resolve();
+
+                });
 
         })
         .catch(() => done(null, false));
 
 });
 
-const loginStrategy = new LocalStrategy({
+const userLoginStrategy = new LocalStrategy({
     usernameField: 'email'
 }, (email, password, done) => {
 
@@ -48,8 +65,13 @@ const loginStrategy = new LocalStrategy({
 
             if (credentials.password === password) {
 
-                done(null, credentials);
-                return Promise.resolve();
+                return getUserById(credentials._user)
+                    .then((user) => {
+
+                        done(null, user);
+                        return Promise.resolve();
+
+                    });
 
             }
 
@@ -61,6 +83,6 @@ const loginStrategy = new LocalStrategy({
 });
 
 module.exports = {
-    headerAuthenticateStrategy,
-    loginStrategy
+    userHeaderAuthenticateStrategy,
+    userLoginStrategy
 };
