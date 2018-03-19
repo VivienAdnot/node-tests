@@ -12,6 +12,10 @@ export const getCredentialsByEmail = email =>
 
     getUniqueData('credentials', 'email', email);
 
-export const getCredentialsById = id =>
+export const getCredentialsById = _credentials =>
 
-    getUniqueData('credentials', 'id', id);
+    getUniqueData('credentials', 'id', _credentials);
+
+export const getCompanyById = _company =>
+
+    getUniqueData('companies', 'id', _company);

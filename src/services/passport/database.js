@@ -1,22 +1,24 @@
 const store = {
     users: [{
-        id: 1,
+        id: 'U1',
         name: 'Vivien'
-    }, {
-        id: 2,
-        name: 'Bruno'
+    }],
+
+    companies: [{
+        id: 'CO1',
+        name: 'CO2'
     }],
 
     credentials: [{
-        id: 'A',
+        id: 'CR1',
         email: 'vivienadnot@amplement.com',
         password: 'test',
-        _user: 1
+        _user: 'U1'
     }, {
-        id: 'B',
+        id: 'CR2',
         email: 'bruno@jetable.org',
         password: 'test',
-        _user: 2
+        _company: 'CO1'
     }]
 };
 

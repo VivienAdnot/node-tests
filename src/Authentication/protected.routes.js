@@ -1,6 +1,7 @@
 import passport from 'passport';
+import getUserOrCompanyFromCredentials from '../services/passport/transform-credentials';
+import { protectedUser, protectedCompany } from './protected.handlers';
 import { responseSender } from '../services/responseSender';
-import getProtected from './protected.handlers';
 
 const requireAuth = passport.authenticate('jwt', {
     assignProperty: 'credentials',
@@ -9,10 +10,20 @@ const requireAuth = passport.authenticate('jwt', {
 
 const routes = [{
     method: 'GET',
-    path: '/protected',
+    path: '/protectedUser',
     handlers: [
         requireAuth,
-        getProtected,
+        getUserOrCompanyFromCredentials,
+        protectedUser,
+        responseSender
+    ]
+}, {
+    method: 'GET',
+    path: '/protectedCompany',
+    handlers: [
+        requireAuth,
+        getUserOrCompanyFromCredentials,
+        protectedCompany,
         responseSender
     ]
 }];
