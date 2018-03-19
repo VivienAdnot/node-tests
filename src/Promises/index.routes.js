@@ -1,4 +1,11 @@
-import { chain, promiseAllExample, promiseMapExample, returnOrReject, ternary } from './index.handlers';
+import {
+    chain,
+    promiseAllExample,
+    promiseMapExample,
+    returnOrReject,
+    ternary,
+    promiseAllTruthyFalsy
+} from './index.handlers';
 import { responseSender } from '../services/responseSender';
 
 const routes = [{
@@ -34,6 +41,13 @@ const routes = [{
     path: '/promiseMap',
     handlers: [
         promiseMapExample,
+        responseSender
+    ]
+}, {
+    method: 'POST',
+    path: '/promiseAllTruthyFalsy',
+    handlers: [
+        promiseAllTruthyFalsy,
         responseSender
     ]
 }];

@@ -41,7 +41,9 @@ export const promiseAllExample = (req, res, next) =>
 export const promiseMapExample = (req, res, next) =>
 
     Promise.map([500, 950, 800, 300], (duration, index) =>
+
         Promise.delay(duration).then(() => logAndResolve(index))
+
     )
         .then((results) => {
 
@@ -91,5 +93,34 @@ export const ternary = (req, res, next) => {
 
         })
         .catch(next);
+
+};
+
+export const promiseAllTruthyFalsy = (req, res, next) => {
+
+    const { data1, data2 } = req.body;
+    const test = data1 === data2;
+
+    Promise.all([
+        test || Promise.reject(Error('not eq')),
+        Promise.delay(500).then(() => true)
+    ]).then(() => {
+
+        res.data = {
+            data: 'OK'
+        };
+        next();
+        return Promise.resolve();
+
+    }).catch((error) => {
+
+        res.data = {
+            data: 'NOK',
+            message: error.message
+        };
+        next();
+        return null;
+
+    });
 
 };
