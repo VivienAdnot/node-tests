@@ -9,7 +9,6 @@ const divide = (nb, divider) => Promise.resolve(nb / divider);
 // async.waterfall equivalent
 export const chain = (req, res, next) => {
 
-    console.log(req.user);
     const value = { test: 1 };
 
     Promise.delay(500)

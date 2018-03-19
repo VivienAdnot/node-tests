@@ -5,6 +5,7 @@ import asyncLibRoutes from './AsyncLib/index.routes';
 import fileSystemRoutes from './FileSystem/index.routes';
 import promisesRoutes from './Promises/index.routes';
 import authenticationRoutes from './Authentication/index.routes';
+import protectedRoutes from './Authentication/protected.routes';
 
 const validateRouteHandlers = (route) => {
 
@@ -49,7 +50,8 @@ const run = (app) => {
         asyncLibRoutes,
         fileSystemRoutes,
         promisesRoutes,
-        authenticationRoutes
+        authenticationRoutes,
+        protectedRoutes
     ]);
 
 };
