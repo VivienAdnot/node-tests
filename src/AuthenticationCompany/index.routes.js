@@ -1,8 +1,9 @@
 import passport from 'passport';
-import { protectedUser, protectedCompany } from './protected.handlers';
+import { proceedSuccessLoginCompany, protectedCompany } from './index.handlers';
 import { responseSender } from '../services/responseSender';
 
-const requireAuthUser = passport.authenticate('jwt-user', {
+const authenticateCompany = passport.authenticate('local-company', {
+    assignProperty: 'company',
     session: false
 });
 
@@ -12,11 +13,11 @@ const requireAuthCompany = passport.authenticate('jwt-company', {
 });
 
 const routes = [{
-    method: 'GET',
-    path: '/protectedUser',
+    method: 'POST',
+    path: '/login-company',
     handlers: [
-        requireAuthUser,
-        protectedUser,
+        authenticateCompany,
+        proceedSuccessLoginCompany,
         responseSender
     ]
 }, {

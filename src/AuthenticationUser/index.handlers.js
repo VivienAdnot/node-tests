@@ -1,12 +1,5 @@
-import jwt from 'jsonwebtoken';
+import { generateJwtToken } from '../services/utils';
 import { getCredentialsByUserId } from '../services/database/model';
-
-const generateJwtToken = (payload) => {
-
-    const token = jwt.sign(payload, 'VIVIEN');
-    return `Bearer ${token}`;
-
-};
 
 exports.proceedSuccessLoginUser = (req, res, next) => {
 
@@ -21,7 +14,19 @@ exports.proceedSuccessLoginUser = (req, res, next) => {
 
             return Promise.resolve();
 
-
         });
+
+};
+
+exports.protectedUser = (req, res, next) => {
+
+    res.data = {
+        data: {
+            name: 'protected ressource user',
+            user: req.user
+        }
+    };
+    next();
+    return Promise.resolve();
 
 };

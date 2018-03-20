@@ -1,12 +1,12 @@
 import passport from 'passport';
-import { companyHeaderAuthenticateStrategy } from './services/passport/strategy-company';
 import { userLoginStrategy, userHeaderAuthenticateStrategy } from './services/passport/strategy-user';
+import { companyLoginStrategy, companyHeaderAuthenticateStrategy } from './services/passport/strategy-company';
 import ajvSchemaRoutes from './AjvSchema/index.routes';
 import asyncLibRoutes from './AsyncLib/index.routes';
 import fileSystemRoutes from './FileSystem/index.routes';
 import promisesRoutes from './Promises/index.routes';
-import authenticationRoutes from './Authentication/index.routes';
-import protectedRoutes from './Authentication/protected.routes';
+import authenticationUserRoutes from './AuthenticationUser/index.routes';
+import authenticationCompanyRoutes from './AuthenticationCompany/index.routes';
 
 const validateRouteHandlers = (route) => {
 
@@ -45,6 +45,7 @@ const run = (app) => {
 
     passport.use(userLoginStrategy);
     passport.use(userHeaderAuthenticateStrategy);
+    passport.use(companyLoginStrategy);
     passport.use(companyHeaderAuthenticateStrategy);
 
     mountRoutes(app, [
@@ -52,8 +53,8 @@ const run = (app) => {
         asyncLibRoutes,
         fileSystemRoutes,
         promisesRoutes,
-        authenticationRoutes,
-        protectedRoutes
+        authenticationUserRoutes,
+        authenticationCompanyRoutes
     ]);
 
 };

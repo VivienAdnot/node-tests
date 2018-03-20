@@ -1,12 +1,14 @@
 const store = {
     users: [{
         id: 'U1',
-        name: 'Vivien'
+        name: 'Vivien',
+        job: 'Developer'
     }],
 
     companies: [{
         id: 'CO1',
-        name: 'CO2'
+        name: 'CO2',
+        uniqueSubdomain: 'wwww'
     }],
 
     credentials: [{

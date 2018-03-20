@@ -17,6 +17,17 @@ class UserStrategy extends Strategy {
 
 }
 
+class UserLocalStrategy extends LocalStrategy {
+
+    constructor(options, verify) {
+
+        super(options, verify);
+        this.name = 'local-user';
+
+    }
+
+}
+
 const userHeaderAuthenticateStrategy = new UserStrategy({
     jwtFromRequest: (req) => {
 
@@ -50,7 +61,7 @@ const userHeaderAuthenticateStrategy = new UserStrategy({
 
 });
 
-const userLoginStrategy = new LocalStrategy({
+const userLoginStrategy = new UserLocalStrategy({
     usernameField: 'email'
 }, (email, password, done) => {
 
