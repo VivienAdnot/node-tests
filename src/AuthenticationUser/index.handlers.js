@@ -1,4 +1,4 @@
-import { generateJwtToken } from '../services/utils';
+import generateJwtToken from '../services/utils';
 import { getCredentialsByUserId } from '../services/database/model';
 
 exports.proceedSuccessLoginUser = (req, res, next) => {

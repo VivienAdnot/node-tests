@@ -1,5 +1,6 @@
 import LocalStrategy from 'passport-local';
 import { ExtractJwt, Strategy } from 'passport-jwt';
+import config from '../../../config';
 import {
     getUserById,
     getCredentialsByEmail,
@@ -36,7 +37,7 @@ const userHeaderAuthenticateStrategy = new UserStrategy({
         return token;
 
     },
-    secretOrKey: 'VIVIEN'
+    secretOrKey: config.jwtSecret
 }, (payload, done) => {
 
     getCredentialsById(payload.id)
