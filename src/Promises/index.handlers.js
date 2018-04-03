@@ -96,6 +96,30 @@ export const ternary = (req, res, next) => {
 
 };
 
+export const ternaryReversed = (req, res, next) => {
+
+    const { email } = req.body;
+
+    const emailAlreadyExists = emailToCheck => Promise.delay(500).then(() => true);
+
+    emailAlreadyExists(email)
+        .then(result => ((result)
+            ? Promise.reject(Boom.conflict('email already exists'))
+            : Promise.resolve()
+        ))
+        .then(() => {
+
+            res.data = {
+                data: 'OK'
+            };
+            next();
+            return Promise.resolve();
+
+        })
+        .catch(next);
+
+};
+
 export const promiseAllTruthyFalsy = (req, res, next) => {
 
     const { data1, data2 } = req.body;

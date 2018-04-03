@@ -4,6 +4,7 @@ import {
     promiseMapExample,
     returnOrReject,
     ternary,
+    ternaryReversed,
     promiseAllTruthyFalsy
 } from './index.handlers';
 import { responseSender } from '../services/responseSender';
@@ -27,6 +28,13 @@ const routes = [{
     path: '/ternary',
     handlers: [
         ternary,
+        responseSender
+    ]
+}, {
+    method: 'POST',
+    path: '/ternaryReversed',
+    handlers: [
+        ternaryReversed,
         responseSender
     ]
 }, {
