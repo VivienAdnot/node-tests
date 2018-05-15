@@ -1,11 +1,13 @@
-var Boom = require('boom');
-var Ajv = require('ajv');
+import Boom from 'boom';
+import Ajv from 'ajv';
 
 const HTTP_CODE_OK = 200;
 const HTTP_CODE_INTERNAL_SERVER_ERROR = 500;
 
-exports.responseSender = (req, res, next) => {
+exports.responseSender = (req, res) => {
+
     res.status(HTTP_CODE_OK).send(res.data);
+
 };
 
 exports.errorResponseSender = (err, req, res, next) => {
@@ -31,4 +33,4 @@ exports.errorResponseSender = (err, req, res, next) => {
 
     }
 
-}
+};

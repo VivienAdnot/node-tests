@@ -7,6 +7,8 @@ import fileSystemRoutes from './FileSystem/index.routes';
 import promisesRoutes from './Promises/index.routes';
 import authenticationUserRoutes from './AuthenticationUser/index.routes';
 import authenticationCompanyRoutes from './AuthenticationCompany/index.routes';
+import headRoutes from './headRoute/index.routes';
+import failRoutes from './failRoute/index.routes';
 
 const validateRouteHandlers = (route) => {
 
@@ -54,7 +56,9 @@ const run = (app) => {
         fileSystemRoutes,
         promisesRoutes,
         authenticationUserRoutes,
-        authenticationCompanyRoutes
+        authenticationCompanyRoutes,
+        headRoutes,
+        failRoutes
     ]);
 
 };
