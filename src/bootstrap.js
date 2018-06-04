@@ -9,6 +9,7 @@ import authenticationUserRoutes from './AuthenticationUser/index.routes';
 import authenticationCompanyRoutes from './AuthenticationCompany/index.routes';
 import headRoutes from './headRoute/index.routes';
 import failRoutes from './failRoute/index.routes';
+import firebaseRoutes from './Firebase/index.routes';
 
 const validateRouteHandlers = (route) => {
 
@@ -58,7 +59,8 @@ const run = (app) => {
         authenticationUserRoutes,
         authenticationCompanyRoutes,
         headRoutes,
-        failRoutes
+        failRoutes,
+        firebaseRoutes
     ]);
 
 };
