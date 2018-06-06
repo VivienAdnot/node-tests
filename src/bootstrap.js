@@ -10,6 +10,7 @@ import authenticationCompanyRoutes from './AuthenticationCompany/index.routes';
 import headRoutes from './headRoute/index.routes';
 import failRoutes from './failRoute/index.routes';
 import firebaseRoutes from './Firebase/index.routes';
+import redirectionRoutes from './Redirection/index.routes';
 
 const validateRouteHandlers = (route) => {
 
@@ -60,7 +61,8 @@ const run = (app) => {
         authenticationCompanyRoutes,
         headRoutes,
         failRoutes,
-        firebaseRoutes
+        firebaseRoutes,
+        redirectionRoutes
     ]);
 
 };
