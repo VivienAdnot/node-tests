@@ -1,4 +1,4 @@
-import { sendNotification } from '../services/firebase/';
+import sendNotification from '../services/firebase/';
 
 exports.pushNotificationToken = (req, res, next) => {
 

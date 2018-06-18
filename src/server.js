@@ -3,9 +3,6 @@ import bodyParser from 'body-parser';
 import Raven from 'raven';
 import { run } from './bootstrap';
 import { errorResponseSender } from './services/responseSender';
-import { initFirebase } from './services/firebase';
-
-initFirebase();
 
 const app = express();
 
