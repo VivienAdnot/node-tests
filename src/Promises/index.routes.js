@@ -5,7 +5,8 @@ import {
     returnOrReject,
     ternary,
     ternaryReversed,
-    promiseAllTruthyFalsy
+    promiseAllTruthyFalsy,
+    promisify
 } from './index.handlers';
 import { responseSender } from '../services/responseSender';
 
@@ -56,6 +57,13 @@ const routes = [{
     path: '/promiseAllTruthyFalsy',
     handlers: [
         promiseAllTruthyFalsy,
+        responseSender
+    ]
+}, {
+    method: 'POST',
+    path: '/promisify',
+    handlers: [
+        promisify,
         responseSender
     ]
 }];
