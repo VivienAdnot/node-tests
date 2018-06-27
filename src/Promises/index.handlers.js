@@ -153,7 +153,7 @@ export const promiseAllTruthyFalsy = (req, res, next) => {
 
 export const promisify = (req, res, next) => {
 
-    const uri = 'https://twitter.com/unclebobmartin';
+    const uri = 'https://twitterXXXXXXXXXXXX.com/unclebobmartin';
 
     return request({
         method: 'GET',
@@ -161,13 +161,16 @@ export const promisify = (req, res, next) => {
         followRedirect: true,
         maxRedirects: 2
     })
-        .then((result) => {
+        .then(({ statusCode }) => {
 
-            console.log(result);
-            res.data = result;
+            res.data = statusCode;
             next();
 
         })
-        .catch(next);
+        .catch((err) => {
+
+            next(err);
+
+        });
 
 };
