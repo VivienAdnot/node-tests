@@ -1,7 +1,8 @@
 import Boom from 'boom';
 import Promise from 'bluebird';
 import { logAndResolve } from '../services/utils/promises/index';
-import request from 'request';
+
+const request = Promise.promisify(require('request'));
 
 const multiply = (nb, multiplier) => Promise.resolve(nb * multiplier);
 
@@ -150,13 +151,11 @@ export const promiseAllTruthyFalsy = (req, res, next) => {
 
 };
 
-const reqwest = Promise.promisify(request);
-
 export const promisify = (req, res, next) => {
 
     const uri = 'https://twitter.com/unclebobmartin';
 
-    return reqwest({
+    return request({
         method: 'GET',
         uri,
         followRedirect: true,
