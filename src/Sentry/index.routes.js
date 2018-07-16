@@ -64,6 +64,13 @@ const routes = [{
         handlers.sentryTest9,
         responseSender
     ]
+}, {
+    method: 'GET',
+    path: '/sentry10',
+    handlers: [
+        handlers.sentryTest10,
+        responseSender
+    ]
 }];
 
 module.exports = routes;

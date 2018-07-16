@@ -1,4 +1,5 @@
 import Boom from 'boom';
+import raven from 'raven';
 import admin from './firebase-admin';
 
 const funcWillThrow = () => {
@@ -183,6 +184,28 @@ exports.sentryTest9 = (req, res, next) => {
     admin.initializeApp();
 
     Promise.reject('should log unhandled rejection');
+    next();
+
+};
+
+exports.sentryTest10 = (req, res, next) => {
+
+    // raven.context({
+    //     extra: {
+    //         fullMessage: {
+    //             token: '1234',
+    //             message: 'coucou',
+    //             options: {
+    //                 priority: 'high'
+    //             }
+    //         }
+    //     }
+    // });
+
+    raven.captureMessage('Vivien created a message');
+
+    raven.captureException('Vivien created an exception');
+
     next();
 
 };

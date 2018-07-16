@@ -12,6 +12,7 @@ import failRoutes from './failRoute/index.routes';
 import firebaseRoutes from './Firebase/index.routes';
 import redirectionRoutes from './Redirection/index.routes';
 import sentryRoutes from './Sentry/index.routes';
+import sendgridRoutes from './Sendgrid/index.routes';
 
 const validateRouteHandlers = (route) => {
 
@@ -64,7 +65,8 @@ const run = (app) => {
         failRoutes,
         firebaseRoutes,
         redirectionRoutes,
-        sentryRoutes
+        sentryRoutes,
+        sendgridRoutes
     ]);
 
 };
