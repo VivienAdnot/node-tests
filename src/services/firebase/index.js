@@ -8,7 +8,7 @@ admin.initializeApp({
     databaseURL: firebaseConfig.api.databaseURL
 });
 
-const sendNotification = (token, message, messagingOptions = {}) => {
+export const sendNotification = (token, message, messagingOptions = {}) => {
 
     return admin
         .messaging()
@@ -16,4 +16,10 @@ const sendNotification = (token, message, messagingOptions = {}) => {
 
 };
 
-export default sendNotification;
+export const sendGroupNotification = (notificationKey, message, messagingOptions = {}) => {
+
+    return admin
+        .messaging()
+        .sendToDeviceGroup(notificationKey, message, messagingOptions);
+
+};

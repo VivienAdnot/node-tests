@@ -8,6 +8,13 @@ const routes = [{
         handlers.pushNotificationToken,
         responseSender
     ]
+}, {
+    method: 'POST',
+    path: '/sendToDeviceGroup',
+    handlers: [
+        handlers.sendToDeviceGroup,
+        responseSender
+    ]
 }];
 
 module.exports = routes;

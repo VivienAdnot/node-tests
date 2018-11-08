@@ -3,6 +3,9 @@ import bodyParser from 'body-parser';
 import raven from 'raven';
 import { run } from './bootstrap';
 import { errorResponseSender } from './services/responseSender';
+import debug from 'debug';
+
+debug('booting');
 
 const app = express();
 
