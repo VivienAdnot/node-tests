@@ -13,6 +13,7 @@ import firebaseRoutes from './Firebase/index.routes';
 import redirectionRoutes from './Redirection/index.routes';
 import sentryRoutes from './Sentry/index.routes';
 import sendgridRoutes from './Sendgrid/index.routes';
+import passwordRoutes from './Passwords/index.routes';
 
 const validateRouteHandlers = (route) => {
 
@@ -66,7 +67,8 @@ const run = (app) => {
         firebaseRoutes,
         redirectionRoutes,
         sentryRoutes,
-        sendgridRoutes
+        sendgridRoutes,
+        passwordRoutes
     ]);
 
 };
