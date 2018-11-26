@@ -67,30 +67,30 @@ const userLoginStrategy = new UserLocalStrategy({
 }, (email, password, done) => {
 
     getCredentialsByEmail(email)
-        .then((credentials) => {
+    .then((credentials) => {
 
-            if (!credentials) {
-
-                return Promise.reject(new Error('invalid credentials'));
-
-            }
-
-            if (credentials.password === password) {
-
-                return getUserById(credentials._user)
-                    .then((user) => {
-
-                        done(null, user);
-                        return Promise.resolve();
-
-                    });
-
-            }
+        if (!credentials) {
 
             return Promise.reject(new Error('invalid credentials'));
 
-        })
-        .catch(error => done(null, false, { error }));
+        }
+
+        if (credentials.password === password) {
+
+            return getUserById(credentials._user)
+            .then((user) => {
+
+                done(null, user);
+                return Promise.resolve();
+
+            });
+
+        }
+
+        return Promise.reject(new Error('invalid credentials'));
+
+    })
+    .catch(error => done(null, false, { error }));
 
 });
 

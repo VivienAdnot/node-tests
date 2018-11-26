@@ -1,6 +1,6 @@
 import Ajv from 'ajv';
 import setupAsync from 'ajv-async';
-import constants from './index.const';
+import * as constants from './index.const';
 import ajvUtils from '../services/utils/ajv/ajv.const';
 
 const getRdbData = (shouldSucceed) => {
@@ -13,12 +13,12 @@ const getRdbData = (shouldSucceed) => {
 
 };
 
-const checkIdExists = (schema, data) => {
+const checkIdExists = () => {
 
     return getRdbData(true)
-        .then(rows => !!rows.length);
+    .then(rows => !!rows.length);
 
-}
+};
 
 const ANCHOR_SCHEMA = {
     $async: true,

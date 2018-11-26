@@ -3,6 +3,16 @@
         "es2015",
         "stage-2"
     ],
+    "plugins": [
+        [
+            "module-resolver", {
+                "root": ["./src"],
+                "alias": {
+                    "config": "./config"
+                }
+            }
+        ]
+    ],
     "ignore": [
         "node_modules/*"
     ]

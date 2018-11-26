@@ -4,17 +4,17 @@ import { getCredentialsByUserId } from '../services/database/model';
 exports.proceedSuccessLoginUser = (req, res, next) => {
 
     getCredentialsByUserId(req.user.id)
-        .then((credentials) => {
+    .then((credentials) => {
 
-            res.data = {
-                token: generateJwtToken({ id: credentials.id }),
-                ...req.user
-            };
-            next();
+        res.data = {
+            token: generateJwtToken({ id: credentials.id }),
+            ...req.user
+        };
+        next();
 
-            return Promise.resolve();
+        return Promise.resolve();
 
-        });
+    });
 
 };
 
