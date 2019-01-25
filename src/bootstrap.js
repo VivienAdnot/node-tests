@@ -10,6 +10,7 @@ import firebaseRoutes from './Firebase/index.routes';
 import sentryRoutes from './Sentry/index.routes';
 import sendgridRoutes from './Sendgrid/index.routes';
 import passwordRoutes from './Passwords/index.routes';
+import emailRoutes from './Email/index.routes';
 
 const validateRouteHandlers = (route) => {
 
@@ -50,6 +51,7 @@ const run = (app) => {
     passport.use(userHeaderAuthenticateStrategy);
 
     mountRoutes(app, [
+        emailRoutes,
         ajvSchemaRoutes,
         asyncLibRoutes,
         fileSystemRoutes,

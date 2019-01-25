@@ -1,8 +1,6 @@
 import admin from 'firebase-admin';
 import { firebaseCert, firebaseConfig } from './index.const';
 
-console.log('will init firebase');
-
 admin.initializeApp({
     credential: admin.credential.cert(firebaseCert),
     databaseURL: firebaseConfig.api.databaseURL
@@ -11,15 +9,15 @@ admin.initializeApp({
 export const sendNotification = (token, message, messagingOptions = {}) => {
 
     return admin
-        .messaging()
-        .sendToDevice(token, message, messagingOptions);
+    .messaging()
+    .sendToDevice(token, message, messagingOptions);
 
 };
 
 export const sendGroupNotification = (notificationKey, message, messagingOptions = {}) => {
 
     return admin
-        .messaging()
-        .sendToDeviceGroup(notificationKey, message, messagingOptions);
+    .messaging()
+    .sendToDeviceGroup(notificationKey, message, messagingOptions);
 
 };

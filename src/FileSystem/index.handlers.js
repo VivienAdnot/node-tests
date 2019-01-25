@@ -1,6 +1,6 @@
 import fs from 'fs';
 
-exports.writeFile = (req, res, next) => {
+export const writeFile = (req, res, next) => {
 
     const { total } = req.body;
 
@@ -29,7 +29,7 @@ exports.writeFile = (req, res, next) => {
 
 };
 
-exports.writeBigFile = (req, res, next) => {
+export const writeBigFile = (req, res, next) => {
 
     const { total } = req.body;
 
@@ -55,5 +55,11 @@ exports.writeBigFile = (req, res, next) => {
     }
 
     next();
+
+};
+
+export const getFile = (req, res, next) => {
+
+    res.download('/Users/vivienadnot/Documents/mailing-list/mailing-list-3.txt');
 
 };
