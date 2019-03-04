@@ -4,7 +4,7 @@
   "description": "rethinkdb overview",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon --exec babel-node src/server.js",
+    "start": "nodemon src/server.js",
     "test": "jest"
   },
   "repository": {

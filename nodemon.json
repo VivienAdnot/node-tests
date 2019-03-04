@@ -1,0 +1,8 @@
+{
+    "watch": ["src"],
+    "ext": "js",
+    "env": {
+      "NODE_OPTIONS": "--experimental-worker"
+    },
+    "exec": "babel-node src/server.js"
+  }
