@@ -3,9 +3,9 @@ const responseSender = require('../services/responseSender');
 
 const routes = [{
     method: 'GET',
-    path: '/runWorker',
+    path: '/exec',
     handlers: [
-        handlers.runWorker,
+        handlers.execCmd,
         responseSender.responseSender
     ]
 }];

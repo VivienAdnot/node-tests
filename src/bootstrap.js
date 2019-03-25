@@ -11,7 +11,7 @@ import sentryRoutes from './Sentry/index.routes';
 import sendgridRoutes from './Sendgrid/index.routes';
 import passwordRoutes from './Passwords/index.routes';
 import emailRoutes from './Email/index.routes';
-import workerThreadsRoutes from './WorkerThreads/index.routes';
+import childProcessRoutes from './ChildProcess/index.routes';
 
 const validateRouteHandlers = (route) => {
 
@@ -63,7 +63,7 @@ const run = (app) => {
         sentryRoutes,
         sendgridRoutes,
         passwordRoutes,
-        workerThreadsRoutes
+        childProcessRoutes
     ]);
 
 };
